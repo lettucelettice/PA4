@@ -57,14 +57,23 @@ Instru
 ```python
 
 #set Mindanao as hometown and Female as gender, as the constant features for data wrangling 
-Mindy = board.loc[(board['Hometown']=='Mindanao')&(board['Gender']=='Female')&(board['Electronics']>55), ['Name', 'Track', 'Electronics']]
-Mindy
+Mindy = board[(board['Hometown'] == 'Mindanao') & (board['Gender'] == 'Female')].copy()
+
+#calculate the average
+Mindy['Average'] = Mindy[['Math','Electronics','GEAS','Communication']].mean(axis=1)
+
+#store rows with averages 55 and above
+Mindy = Mindy[Mindy['Average'] >= 55]
+
+#output the following elements of the data frame only 
+Mindy[['Name', 'Track', 'Electronics', 'Average']]
 
 ```
 
 **Output:**
 
-![image](https://github.com/user-attachments/assets/e09f3910-a299-44e9-b769-be0cf761b417)
+![image](https://github.com/user-attachments/assets/c35aad0c-1199-4514-a2df-127baa6c7bbc)
+
 
 ### Problem 2
 
